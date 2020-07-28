@@ -1,0 +1,21 @@
+<form (ngSubmit)="onSubmitFormChoiceGame(f)" #f="ngForm">
+  <div class="form-group col-md-4">
+    <label for="gameChoice">Choisir jeux a modifier</label>
+    <select id="gameChoice" class="form-control" name="choiceGame" ngModel>
+      <option selected>Choisir...</option>
+      <ng-container *ngFor="let item of gameModelChoice">
+        <option [ngValue]="item.id">{{item.nom}}</option>
+      </ng-container>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Valider</button>
+</form>
+<ng-container>
+  <div class="jumbotron">
+    <h1 class="display-4"></h1>
+    <p class="lead"></p>
+    <hr class="my-4">
+    <p></p>
+    <a class="btn btn-primary btn-lg" href="#" role="button"></a>
+  </div>
+</ng-container>

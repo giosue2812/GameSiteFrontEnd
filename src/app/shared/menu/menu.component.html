@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">My Games</a>
+  <a class="navbar-brand" routerLink=''>My Games</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -13,9 +13,9 @@
           {{item.title}}
         </a>
         <div class="dropdown-menu" [attr.aria-labelledby]=item.idDrop>
-          <a class="dropdown-item" href="{{item.linkMenu1}}">{{item.menu1}}</a>
-          <a class="dropdown-item" href="{{item.linkMenu2}}">{{item.menu2}}</a>
-          <a class="dropdown-item" href="{{item.linkMenu3}}">{{item.menu3}}</a>
+          <a class="dropdown-item" routerLink="{{item.linkMenu1}}">{{item.menu1}}</a>
+          <a class="dropdown-item" routerLink="{{item.linkMenu2}}">{{item.menu2}}</a>
+          <a class="dropdown-item" routerLink="{{item.linkMenu3}}">{{item.menu3}}</a>
         </div>
       </li>
       </ng-container>

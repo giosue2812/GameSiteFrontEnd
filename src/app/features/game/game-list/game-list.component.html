@@ -1,0 +1,16 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Titre</th>
+    <th scope="col">Description</th>
+  </tr>
+  </thead>
+  <tbody *ngFor="let item of game">
+    <tr>
+      <th scope="row"><img src="{{item.image}}" class="d-block w-100" alt="..."></th>
+      <th class="titre">{{item.nom}}</th>
+      <th>{{item.description}}</th>
+    </tr>
+  </tbody>
+</table>

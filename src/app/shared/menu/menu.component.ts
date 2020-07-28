@@ -11,9 +11,9 @@ export class MenuComponent implements OnInit {
     {
       title: "Game",
       menu1: "List",
-      linkMenu1: "#",
+      linkMenu1: ["game"],
       menu2: "Edit",
-      linkMenu2: "#",
+      linkMenu2: ["game/edit"],
       menu3: "New",
       linkMenu3: "#",
       idDrop: "gameNav"
