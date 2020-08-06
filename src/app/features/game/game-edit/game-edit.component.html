@@ -1,21 +1,82 @@
 <form (ngSubmit)="onSubmitFormChoiceGame(f)" #f="ngForm">
-  <div class="form-group col-md-4">
-    <label for="gameChoice">Choisir jeux a modifier</label>
-    <select id="gameChoice" class="form-control" name="choiceGame" ngModel>
-      <option selected>Choisir...</option>
-      <ng-container *ngFor="let item of gameModelChoice">
-        <option [ngValue]="item.id">{{item.nom}}</option>
-      </ng-container>
-    </select>
+    <div class="form-group">
+      <div class="row">
+        <div class="col">
+          <label for="gameChoice">Choisir jeux a modifier</label>
+          <select id="gameChoice" class="form-control" name="choiceGame" ngModel>
+            <option selected>Choisir...</option>
+            <ng-container *ngFor="let item of gameModelChoice">
+              <option [ngValue]="item.id">{{item.nom}}</option>
+            </ng-container>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Valider</button>
+        </div>
+      </div>
   </div>
-  <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Valider</button>
 </form>
-<ng-container>
-  <div class="jumbotron">
-    <h1 class="display-4"></h1>
-    <p class="lead"></p>
-    <hr class="my-4">
-    <p></p>
-    <a class="btn btn-primary btn-lg" href="#" role="button"></a>
+
+<ng-container *ngIf="gameModelDetail">
+  <div class="jumbotron" *ngFor="let item of gameModelDetail">
+    <form [formGroup]="gameEditForm" (ngSubmit)="onSubmitEditForm()">
+      <div class="form-group">
+        <label for="titre">Titre</label>
+        <input id="titre" type="text" [(ngModel)]="item.nom" class="form-control" formControlName="titre">
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" class="form-control" [(ngModel)]="item.description" formControlName="description">
+          {{item.description}}
+        </textarea>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col" formGroupName="genre">
+            <label for="genreChoice">Genre</label>
+            <select id="genreChoice" class="form-control" formControlName="label">
+              <option selected>{{item.genre}}</option>
+            </select>
+          </div>
+          <div class="col" formGroupName="editeur">
+            <label for="editeurChoice">Editeur</label>
+            <select id="editeurChoice" class="form-control" formControlName="label">
+              <option selected>{{item.editeur}}</option>
+            </select>
+          </div>
+          <div class="col" formGroupName="platform">
+            <label for="platformChoice">Platform</label>
+            <select id="platformChoice" class="form-control" formControlName="label">
+              <option selected>{{item.platform}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="custom-file">
+          <label for="image" class="custom-file-label">Image</label>
+          <input type="file" id="image" class="custom-file-input" (change)="submitFile($event)">
+        </div>
+      </div>
+      <div class="row m-lg-5">
+        <div class="col">
+          <img class="img-fluid" src="{{item.image}}" alt="{{item.nom}}">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col">
+            <label for="video">Video</label>
+            <input id="video" type="text" class="form-control" formControlName="video">
+            <ng-container *ngFor="let video of item.video">
+              <youtube-player videoId="{{video}}"></youtube-player>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Modifier</button>
+    </form>
   </div>
 </ng-container>
