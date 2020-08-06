@@ -4,6 +4,8 @@ import {GameService} from '../../../core/services/game.service';
 import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 import {GameDetailModel} from '../../../core/models/GameDetailModel';
 import {YouTubePlayerModule} from '@angular/youtube-player';
+import {GenreService} from "../../../core/services/genre.service";
+import {GenreModel} from "../../../core/models/GenreModel";
 
 
 @Component({
@@ -17,13 +19,19 @@ export class GameEditComponent implements OnInit {
   gameEditForm:FormGroup;
   gameModelChoice:GameModel[];
   gameModelDetail:GameDetailModel[];
+  genreModel : GenreModel[];
   constructor(
     private gameService: GameService,
+    private genreService: GenreService,
     private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.gameService.gameList().subscribe(data => {
       this.gameModelChoice = data;
+    });
+
+    this.genreService.genreList().subscribe(data => {
+      this.genreModel = data;
     });
 
     const tag = document.createElement('script');
@@ -36,9 +44,9 @@ export class GameEditComponent implements OnInit {
     this.gameEditForm = this.formBuilder.group({
       titre: new FormControl('',[Validators.required]),
       description: new FormControl('',[Validators.required,Validators.maxLength(50),Validators.minLength(10)]),
-      genre: new FormGroup({label:new FormControl('')},Validators.required),
-      editeur: new FormGroup({label: new FormControl('')},Validators.required),
-      platform: new FormGroup({label: new FormControl('')},Validators.required),
+      genre: new FormGroup({id:new FormControl('')},Validators.required),
+      editeur: new FormGroup({id: new FormControl('')},Validators.required),
+      platform: new FormGroup({id: new FormControl('')},Validators.required),
       video: new FormControl('',[Validators.required])
     })
   }

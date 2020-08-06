@@ -36,8 +36,11 @@
         <div class="row">
           <div class="col" formGroupName="genre">
             <label for="genreChoice">Genre</label>
+            <p>{{item.genre}}</p>
             <select id="genreChoice" class="form-control" formControlName="label">
-              <option selected>{{item.genre}}</option>
+              <ng-container *ngFor="let item of genreModel">
+                <option value="{{item.id}}">{{item.label}}</option>
+              </ng-container>
             </select>
           </div>
           <div class="col" formGroupName="editeur">
