@@ -1,0 +1,61 @@
+<ng-container *ngIf="gameService.isLoading$|async;else elseBlock">
+  <app-spinner></app-spinner>
+</ng-container>
+<ng-template #elseBlock>
+<form [formGroup]="gameNewForm" (ngSubmit)="onSubmitNewForm()">
+    <div class="form-group">
+      <label for="titre">Titre</label>
+      <input id="titre" type="text" class="form-control" formControlName="nom">
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" class="form-control" formControlName="description">
+        </textarea>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col">
+          <label for="genreChoice">Genre</label>
+          <select id="genreChoice" class="form-control" formControlName="genre">
+            <option *ngFor="let genre of genreModel"
+                    [value]="genre.label">
+              {{genre.label}}
+            </option>
+          </select>
+        </div>
+        <div class="col">
+          <label for="editeurChoice">Editeur</label>
+          <select id="editeurChoice" class="form-control" formControlName="editeur">
+            <option *ngFor="let editeur of editeurModel"
+                    [value]="editeur.label">
+              {{editeur.label}}
+            </option>
+          </select>
+        </div>
+        <div class="col">
+          <label for="platformChoice">Platform</label>
+          <select id="platformChoice" class="form-control" formControlName="platform">
+            <option *ngFor="let platform of platformModel" [value]="platform.label">{{platform.label}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col">
+          <label for="prix">Prix</label>
+          <input type="number" class="form-control" id="prix" formControlName="prix">
+        </div>
+        <div class="col">
+          <label for="dateSortie">Date Sortie</label>
+          <input type="date" class="form-control" id="dateSortie" formControlName="dateSortie">
+        </div>
+        <div class="col">
+          <label for="dateAchat">Date Achat</label>
+          <input type="date" class="form-control" id="dateAchat" formControlName="dateAchat">
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Record</button>
+  </form>
+</ng-template>

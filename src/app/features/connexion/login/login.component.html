@@ -1,0 +1,26 @@
+<ng-container *ngIf="isLoading;else elseBlock">
+  <app-spinner></app-spinner>
+</ng-container>
+<ng-template #elseBlock>
+  <div class="card p-5" style="width: 70%;margin:15%">
+    <div class="card-body">
+      <h5 class="card-title">Connexion</h5>
+      <p class="card-text">Si vous n'etes pas inscrit vous pouvez vous inscrire <a routerLink="inscription">ici</a></p>
+      <form [formGroup]="loginGroup" (ngSubmit)="onSubmitForm()">
+      <div class="mb-3 row">
+        <label for="username" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="username" formControlName="username">
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label for="password" class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-10">
+          <input type="password" class="form-control" id="password" formControlName="password">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Login</button>
+      </form>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,37 @@
+<ng-container *ngIf="gameService.isLoading$|async;else elseBlock">
+  <app-spinner></app-spinner>
+</ng-container>
+<ng-template #elseBlock>
+<ng-container *ngFor="let item of gameDetailModel">
+<div class="card mb-3" style="max-width: 100%">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="{{item.image}}" class="card-img" alt="ss">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title display-4">{{item.nom}}</h5>
+        <p class="card-text">{{item.description}}</p>
+        <p>Genre: {{item.genre}}</p>
+        <p>Jeux: {{item.platform}}</p>
+        <p>Developer par {{item.editeur}}</p>
+      </div>
+    </div>
+    <ng-container *ngFor="let video of item.video|slice: (page-1) * pageSize: (page-1) * pageSize + pageSize">
+      <div class="container m-5">
+        <div class="row justify-content-center">
+        <youtube-player videoId="{{video[1]}}"></youtube-player>
+        </div>
+        <div class="row justify-content-center">
+          <ngb-pagination
+            [(page)]="page"
+            [pageSize]="pageSize"
+            [collectionSize]="item.video.length"
+          ></ngb-pagination>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+</ng-container>
+</ng-template>

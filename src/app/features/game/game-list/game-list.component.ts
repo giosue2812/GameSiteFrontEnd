@@ -10,7 +10,12 @@ import {GameModel} from '../../../core/models/GameModel';
 export class GameListComponent implements OnInit {
 
   game: GameModel[];
-  constructor(private gameService: GameService) { }
+
+  page = 1;
+  pageSize = 5;
+
+
+  constructor(public gameService: GameService) { }
 
   ngOnInit(): void {
     this.gameService.gameList().subscribe(

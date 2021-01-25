@@ -1,7 +1,11 @@
+<ng-container *ngIf="gameService.isLoading$|async;else elseBlock">
+  <app-spinner></app-spinner>
+</ng-container>
+<ng-template #elseBlock>
 <div id="carouselGame" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
-      <div class="carousel-item" *ngFor="let item of game;let index = index;let isFirst = first" [ngClass]="{active:isFirst}">
-        <img [src]="item.image" class="d-block w-100" alt="...">
+      <div class="carousel-item" *ngFor="let item of game;let isFirst = first" [ngClass]="{active:isFirst}">
+        <img [src]="item.image" class="d-block w-50" alt="...">
         <div class="carousel-caption d-none d-md-block">
           <h5 [textContent]="item.nom"></h5>
         </div>
@@ -16,3 +20,4 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
+</ng-template>

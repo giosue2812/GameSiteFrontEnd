@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit {
 
   game: GameModel[];
 
-  constructor(private gameService: GameService) { }
+  constructor(public gameService: GameService) { }
 
   ngOnInit(): void {
     this.gameService.gameList().subscribe(
@@ -20,5 +20,4 @@ export class HomeComponent implements OnInit {
       }
     )
   }
-
 }

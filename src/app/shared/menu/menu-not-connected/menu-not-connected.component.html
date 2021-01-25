@@ -1,0 +1,7 @@
+<ul class="navbar-nav" *ngIf="!sessionService.isLogged">
+  <ng-container *ngFor="let itemLog of menuConnexion">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="{{itemLog.link}}">{{itemLog.title}}</a>
+    </li>
+  </ng-container>
+</ul>

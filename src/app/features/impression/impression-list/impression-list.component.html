@@ -1,0 +1,33 @@
+<h3 class="display-3">Liste des impressions</h3>
+<ng-container *ngIf="impressionService.isLoading$|async;else elseBlock">
+  <app-spinner></app-spinner>
+</ng-container>
+<ng-template #elseBlock>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Titre</th>
+        <th scope="col">Impression</th>
+        <th scope="col">Terminer</th>
+        <th scope="col">Completion</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of impressionModel|slice:(page-1) * pageSize: (page-1) * pageSize + pageSize">
+      <tr>
+        <th class="image" scope="row"><img src="{{item.image}}" class="d-block w-50 position-relative" alt="..."></th>
+        <th class="titre">{{item.game_titre}}</th>
+        <th>{{item.description}}</th>
+        <th>{{item.how_end}}</th>
+        <th>{{item.taux_de_completion}} %</th>
+        <th><a class="btn btn-primary" routerLink="editer/{{item.id}}">Editer</a></th>
+      </tr>
+    </tbody>
+  </table>
+  <ngb-pagination
+    [(page)]="page"
+    [pageSize]="pageSize"
+    [collectionSize]="impressionModel.length"
+  ></ngb-pagination>
+</ng-template>

@@ -1,0 +1,25 @@
+<ng-container *ngIf="userService.isLoading$|async;else elseBlock">
+  <app-spinner></app-spinner>
+</ng-container>
+<ng-template #elseBlock>
+  <div class="card p-5" style="width: 70%;margin:15%">
+    <div class="card-body">
+      <form [formGroup]="editFormRole" (ngSubmit)="onSubmitForm()">
+        <ng-container *ngFor="let item of userModel">
+          <h5 class="card-title">Edition User : {{item.nom}} {{item.prenom}}</h5>
+          <div class="mb-3 row">
+            <div class="col-sm-10">
+              <label for="role" class="col-sm-2 col-form-label">Role</label>
+              <select id="role" ngModel="{{item.role[0]}}" formControlName="role">
+                <option>ROLE_USER</option>
+                <option>ROLE_SUPERVISEUR</option>
+                <option>ROLE_ADMIN</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Record</button>
+        </ng-container>
+      </form>
+    </div>
+  </div>
+</ng-template>

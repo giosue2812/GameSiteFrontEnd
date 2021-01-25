@@ -1,0 +1,32 @@
+<ng-container *ngIf="genreService.isLoading$|async;else elseBlock">
+  <app-spinner></app-spinner>
+</ng-container>
+<ng-template #elseBlock>
+  <div class="card">
+    <div class="card-body">
+        <div class="form-row">
+          <div class="col">
+            <table class="table">
+              <thead>
+              <tr>
+                <th scope="col">Genre</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let item of genreModel">
+                <td>{{item.label}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col">
+            <form [formGroup]="genreForm" (ngSubmit)="onSubmitForm()">
+              <label for="genre">Genre</label>
+              <input id="genre" type="text" class="form-control" placeholder="New Genre Game" formControlName="label">
+              <button type="submit" class="btn badge-primary">Record</button>
+            </form>
+          </div>
+        </div>
+    </div>
+  </div>
+</ng-template>

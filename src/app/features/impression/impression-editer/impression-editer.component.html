@@ -1,0 +1,27 @@
+<h3 class="display-3">Editer une impression</h3>
+<ng-container *ngIf="impressionService.isLoading$|async;else elseBlock">
+  <app-spinner></app-spinner>
+</ng-container>
+<ng-template #elseBlock>
+  <form [formGroup]="impressionEditerForm" (ngSubmit)="onSubmitEditForm()">
+    <ng-container *ngFor="let item of impressionModel">
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" [(ngModel)]="item.description" class="form-control" formControlName="description"></textarea>
+        <div class="row">
+          <div class="col">
+            <label for="howEnd">Combien Terminer</label>
+            <input id="howEnd" [(ngModel)]="item.how_end" class="form-control" type="number" formControlName="howEnd">
+          </div>
+          <div class="col">
+            <label for="tauxComplete">Taux de completion</label>
+            <input class="form-control" [(ngModel)]="item.taux_de_completion" id="tauxComplete" type="number" step="0.01" formControlName="tauxDeCompletion">
+          </div>
+        </div>
+        <br/>
+        <img src="{{item.image}}" alt="..." class="d-block w-25 position-relative">
+      </div>
+      <button type="submit" class="btn btn-primary">Record</button>
+    </ng-container>
+  </form>
+</ng-template>

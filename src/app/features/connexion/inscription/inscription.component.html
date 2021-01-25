@@ -1,0 +1,39 @@
+<ng-container *ngIf="userService.isLoading$|async;else elseBlock">
+  <app-spinner></app-spinner>
+</ng-container>
+<ng-template #elseBlock>
+  <div class="card p-5" style="width: 70%;margin:15%">
+    <div class="card-body">
+      <h5 class="card-title">Inscription</h5>
+      <form [formGroup]="inscriptionGroup" (ngSubmit)="onSubmitForm()">
+        <div class="mb-3 row">
+          <label for="username" class="col-sm-2 col-form-label">Email</label>
+          <div class="col-sm-10">
+            <input type="email" class="form-control" id="username" formControlName="email">
+            <div *ngIf="inscriptionGroup.get('email').invalid && inscriptionGroup.get('email').value
+                  && (inscriptionGroup.get('email').touched || inscriptionGroup.get('email').dirty)" class="alert-danger">Email incorrecte</div>
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="password" class="col-sm-2 col-form-label">Password</label>
+          <div class="col-sm-10">
+            <input type="password" class="form-control" id="password" formControlName="password">
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="name" class="col-sm-2 col-form-label">Name</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" formControlName="name">
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="prenom" class="col-sm-2 col-form-label">Prenom</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="prenom" formControlName="prenom">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="inscriptionGroup.invalid">Record</button>
+      </form>
+    </div>
+  </div>
+</ng-template>
