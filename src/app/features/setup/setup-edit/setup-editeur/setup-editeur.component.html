@@ -1,0 +1,43 @@
+<ng-container *ngIf="editeurService.isLoading$|async;else elseBlock">
+  <app-spinner></app-spinner>
+</ng-container>
+<ng-template #elseBlock>
+  <div class="card">
+    <div class="card-body">
+      <form>
+        <div class="form-row">
+          <div class="col">
+            <table class="table">
+              <thead>
+              <tr>
+                <th scope="col">Editeur</th>
+                <th scope="col">Description</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let item of editeurModel|slice:(page-1) * pageSize:(page-1) * pageSize + pageSize">
+                <td>{{item.label}}</td>
+                <td>{{item.description}}</td>
+              </tr>
+              </tbody>
+            </table>
+            <ngb-pagination
+              [(page)]="page"
+              [pageSize]="pageSize"
+              [collectionSize]="editeurModel.length"
+            ></ngb-pagination>
+          </div>
+          <div class="col">
+            <form [formGroup]="editeurForm" (ngSubmit)="onSubmitForm()">
+              <label for="platform">Editeur</label>
+              <input id="platform" type="text" class="form-control" placeholder="New Editeur" formControlName="label">
+              <label for="description">Description</label><br/>
+              <textarea id="description" placeholder="New Description" class="form-control" formControlName="description"></textarea>
+              <input type="submit" value="Record" class="btn badge-primary">
+            </form>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,37 @@
+<ng-container *ngIf="userService.isLoading$|async;else elseBlock">
+  <app-spinner></app-spinner>
+</ng-container>
+<ng-template #elseBlock>
+<div class="card">
+  <div class="card-body">
+    <div class="form-row">
+      <div class="col">
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">Email</th>
+            <th scope="col">Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Role</th>
+            <th scope="col">Action</th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of userModel">
+              <td>{{item.email}}</td>
+              <td>{{item.nom}}</td>
+              <td>{{item.prenom}}</td>
+              <td>{{item.role}}</td>
+              <td>
+                <a routerLink="editer/{{item.id}}" class="btn btn-primary">Editer</a>
+                -
+                <button class="btn btn-primary" (click)="deleteUser(item.id)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</ng-template>
