@@ -1,0 +1,19 @@
+<ul class="navbar-nav" *ngIf="sessionService.isLogged">
+    <ng-container *ngFor="let item of menu">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="#{{item.idDrop}}" role="button"
+           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{item.title}}
+        </a>
+        <div class="dropdown-menu" [attr.aria-labelledby]=item.idDrop>
+          <a class="dropdown-item" routerLink="{{item.linkMenu1}}">{{item.menu1}}</a>
+          <a class="dropdown-item" routerLink="{{item.linkMenu2}}">{{item.menu2}}</a>
+          <a class="dropdown-item" routerLink="{{item.linkMenu3}}">{{item.menu3}}</a>
+        </div>
+      </li>
+    </ng-container>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="logout" (click)="logout()">Deconnexion</a>
+    </li>
+</ul>
+

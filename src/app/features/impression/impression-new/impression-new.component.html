@@ -1,0 +1,28 @@
+<h3 class="display-3">Ajouter une impression</h3>
+<ng-container *ngIf="gameService.isLoading$|async;else elseBlock">
+  <app-spinner></app-spinner>
+</ng-container>
+<ng-template #elseBlock>
+  <form [formGroup]="gameChoiceForm" (ngSubmit)="onSubmitNewForm()">
+    <div class="form-group">
+      <label for="game">Game</label>
+      <select id="game" class="form-control" formControlName="idGame">
+        <option *ngFor="let item of gameChoice"
+                [value]="item.id">{{item.nom}}</option>
+      </select>
+        <label for="description">Description</label>
+        <textarea id="description" class="form-control" formControlName="description"></textarea>
+      <div class="row">
+        <div class="col">
+          <label for="howEnd">Combien Terminer</label>
+          <input id="howEnd" class="form-control" type="number" formControlName="howEnd">
+        </div>
+        <div class="col">
+          <label for="tauxComplete">Taux de completion</label>
+          <input class="form-control" id="tauxComplete" type="number" step="0.01" formControlName="tauxDeCompletion">
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Record</button>
+  </form>
+</ng-template>

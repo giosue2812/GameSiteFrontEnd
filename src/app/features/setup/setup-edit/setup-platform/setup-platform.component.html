@@ -1,0 +1,34 @@
+<ng-container *ngIf="platformService.isLoading$|async;else elseBlock">
+  <app-spinner></app-spinner>
+</ng-container>
+<ng-template #elseBlock>
+  <div class="card">
+    <div class="card-body">
+      <form>
+        <div class="form-row">
+          <div class="col">
+            <table class="table">
+              <thead>
+              <tr>
+                <th scope="col">Platform</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let item of platformModel">
+                <td>{{item.label}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col">
+            <form [formGroup]="platformForm" (ngSubmit)="onSubmitForm()">
+              <label for="platform">PLatform</label>
+              <input id="platform" type="text" class="form-control" placeholder="New PLatform" formControlName="label">
+              <input type="submit" value="Record" class="btn badge-primary">
+            </form>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>
