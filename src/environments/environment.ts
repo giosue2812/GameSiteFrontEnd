@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url: 'http://localhost:8080/GamesSite/BackEnd/public/api/'
+  url: 'http://localhost:70/GameSiteBackEnd/public/api/'
 };
 
 /*

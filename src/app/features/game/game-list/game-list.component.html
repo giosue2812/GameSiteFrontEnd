@@ -1,5 +1,5 @@
 <h3 class="display-3">Liste de Jeux</h3>
-<ng-container *ngIf="gameService.isLoading$|async;else elseBlock">
+<ng-container *ngIf="gameService.isLoading$ |async;else elseBlock">
   <app-spinner></app-spinner>
 </ng-container>
 <ng-template #elseBlock>
@@ -14,7 +14,13 @@
   </thead>
   <tbody *ngFor="let item of game|slice:(page-1) * pageSize:(page-1) * pageSize + pageSize">
     <tr>
-      <th scope="row"><a routerLink="detail/{{item.id}}"><img src="{{item.image}}" class="d-block w-100 position-relative" alt="..."></a></th>
+
+        <th scope="row">
+          <ng-container *ngIf="loadImage">
+            <a routerLink="detail/{{item.id}}"><img src="{{item.image}}" class="d-block w-100 position-relative" alt="..."></a>
+          </ng-container>
+        </th>
+
       <th class="titre">{{item.nom}}</th>
       <th>{{item.description}}</th>
       <th><a class="btn btn-primary" routerLink="edit/{{item.id}}">Editer</a></th>
